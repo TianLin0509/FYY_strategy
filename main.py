@@ -21,6 +21,7 @@ for date in tqdm(dates):
         # 开盘涨停+首板+非一字
         if tmp[0] and tmp[3] and not tmp[2]:
             flag = '回封' if tmp[1] else '未回封'
-            result.append([code, date, flag, tmp[4], tmp[5]])
+            result.append(['\t' + code, date, flag, tmp[4], tmp[5]])
 M = pd.DataFrame(result)
-M.to_csv('result.csv', index=0, encoding='utf-8')
+M.columns = ['代码', '日期', '回封与否', '开盘收益', '最高收益']
+M.to_csv('result.csv', index=0, encoding='gbk')
